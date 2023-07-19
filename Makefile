@@ -1,4 +1,4 @@
-NAME = pipex.a
+NAME = pipex
 
 LIBFTPRINTF = ./ft_printf/libftprintf.a
 
@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
-SRC = 
+SRC =	pipex.c \
+		utils.c
 
 OBJ = $(SRC:.=.o)
 
@@ -15,7 +16,9 @@ $(NAME): ${OBJ}
 		cp ${LIBFTPRINTF} ${NAME}
 		ar rc ${NAME} ${OBJ}
 
-all:	$(NAME) clean
+all:	
+		${MAKE} ./ft_printf
+		$(NAME) clean
 
 clean:
 		${MAKE} clean  -C ./ft_printf
@@ -25,4 +28,4 @@ fclean:	clean
 		${MAKE} fclean -C ./ft_printf
 		$(RM) $(NAME)
 
-re:	fclean
+re:	fclean all

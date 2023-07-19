@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/07/19 16:10:39 by mjina             #+#    #+#             */
+/*   Updated: 2023/07/19 16:10:42 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include "ft_printf/ft_printf.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include "pipex.h"
 
-int		open_file(char *file, int rd_wr);
-void	free_tab(char **str);
+int open_file(char *file, int rd_wr)
+{
+    int ret;
 
-#endif
+    if (rd_wr == 0)
+    {
+        ret = open(file, O_RDONLY);
+    }
+    else if (rd_wr == 1)
+    {
+        ret = open(file, O_WRONLY);
+    }
+    else
+        ret = -1;
+    return (ret);
+}
+
+void    free_tab(char **str)
+{
+    int i;
+
+    i = -1;
+    while (str[++i])
+    {
+        free(str[i]);
+    }
+    exit(0);
+}
