@@ -55,13 +55,19 @@ int	main(int argc, char **argv, char **env)
 
 	if (argc == 5)
 	{
-	if (pipe(p_fd) == -1)
-		exit(-1);
-	pid = fork();
-	if (pid == -1)
-		exit(-1);
-	if (pid == 0)
-		child(argv, p_fd, env);
-	waitpid(pid, NULL, 0);
-	parrent(argv, p_fd, env);
+		if (pipe(p_fd) == -1)
+			exit(-1);
+		pid = fork();
+		if (pid == -1)
+			exit(-1);
+		if (pid == 0)
+			child(argv, p_fd, env);
+		waitpid(pid, NULL, 0);
+		parrent(argv, p_fd, env);
+	}
+	else
+	{
+		ft_putstr_fd("Error: Wrong arguments");
+	}
+	return (0);
 }
