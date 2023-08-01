@@ -53,15 +53,15 @@ int	main(int argc, char **argv, char **env)
 	int		p_fd[2];
 	pid_t	pid;
 
-	if (argc != 5)
-		exit(0);
+	if (argc == 5)
+	{
 	if (pipe(p_fd) == -1)
 		exit(-1);
 	pid = fork();
 	if (pid == -1)
 		exit(-1);
-	else if (pid == 0)
+	if (pid == 0)
 		child(argv, p_fd, env);
-	else
-		parrent(argv, p_fd, env);
+	waitpid(pid, NULL, 0);
+	parrent(argv, p_fd, env);
 }
