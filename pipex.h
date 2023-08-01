@@ -21,7 +21,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-int		open_file(char *file, int rd_wr);
 void	free_tab(char **str);
+void    execute(char *str, char **evnp);
+char    *get_path(char *cmd, char **envp);
 
 #endif
