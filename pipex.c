@@ -67,7 +67,7 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 	{
-		ft_putstr_fd("Error: Wrong arguments");
+		ft_putstr_fd("Error: Wrong arguments", 2);
 	}
 	return (0);
 }
