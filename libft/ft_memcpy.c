@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/10 17:32:42 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/16 15:56:41 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+void	*ft_memcpy(void *dest, const void *src, size_t i)
+{
+	size_t		c;
+	char		*fakesrc;
+	char		*fakedest;
 
-#endif
+	if (!dest && !src && i)
+		return (NULL);
+	c = 0;
+	fakesrc = (char *)src;
+	fakedest = (char *)dest;
+	while (c < i)
+	{
+		fakedest[c] = fakesrc[c];
+		c++;
+	}
+	return ((char *)fakedest);
+}

@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/12 13:37:18 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/16 13:21:40 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
+{
+	int				c;
+	int				comp;
+	unsigned char	*fakestr1;
+	unsigned char	*fakestr2;
 
-#endif
+	c = 0;
+	fakestr1 = (unsigned char *)str1;
+	fakestr2 = (unsigned char *)str2;
+	while (c < (int)n)
+	{
+		comp = fakestr1[c] - fakestr2[c];
+		if (comp != 0)
+			return (comp);
+		c++;
+	}
+	return (0);
+}

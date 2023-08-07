@@ -24,7 +24,7 @@ char	*get_path(char *cmd, char **envp)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
-	while (paths [i])
+	while (paths[i])
 	{
 		hold = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(hold, cmd);
@@ -44,8 +44,8 @@ char	*get_path(char *cmd, char **envp)
 void	execute(char *str, char **envp)
 {
 	char	**cmd;
-	char    *path;
-	int     i;
+	char	*path;
+	int		i;
 
 	i = -1;
 	cmd = ft_split(str, ' ');
@@ -61,14 +61,14 @@ void	execute(char *str, char **envp)
 		exit(0);
 }
 
-void    free_tab(char **str)
+void	free_tab(char **str)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (str[++i])
-    {
-        free(str[i]);
-    }
-    exit(0);
+	i = -1;
+	while (str[++i])
+	{
+		free(str[i]);
+	}
+	exit(0);
 }

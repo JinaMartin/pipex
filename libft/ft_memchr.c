@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/12 13:19:44 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/16 14:52:27 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdio.h>
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+void	*ft_memchr(const void *str, int c, size_t n)
+{
+	const char	*fakestr;
+	size_t		count;
 
-#endif
+	if (n == 0)
+		return (NULL);
+	fakestr = str;
+	count = 0;
+	while (*fakestr != (char)c && count < n - 1)
+	{
+		fakestr++;
+		count++;
+	}
+	if (*fakestr == (char)c)
+		return ((char *)fakestr);
+	return (NULL);
+}

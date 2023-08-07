@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/30 16:16:40 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/30 16:16:41 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
-
-#endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}

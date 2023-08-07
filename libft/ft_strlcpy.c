@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/11 15:31:34 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/13 14:02:26 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	c;
 
-#endif
+	if (!dest || !src)
+		return (0);
+	c = 0;
+	while (c + 1 < size && src[c] != '\0')
+	{
+		dest[c] = src[c];
+		c++;
+	}
+	if (c != size)
+		dest[c] = '\0';
+	return (ft_strlen(src));
+}

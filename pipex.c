@@ -12,30 +12,30 @@
 
 #include "pipex.h"
 
-void	parrent(char **argv, int *p_fd, char **env)
+void	parrent(char **argv, int *p_fd, char **envp)
 {
-	int fd;
+	int	fd;
 
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 		exit(1);
-	dup2(fd, 1);
-	dup2(p_fd[0], 0);
+	dup2(p_fd[0], STDIN_FILENO);//0);
+	dup2(fd, STDOUT_FILENO);//1);
 	close(p_fd[1]);
-	execute(argv[3], env);
+	execute(argv[3], envp);
 }
 
-void	child(char **argv, int *p_fd, char **env)
+void	child(char **argv, int *p_fd, char **envp)
 {
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
 		exit(1);
-	dup2(fd, 0);
-	dup2(p_fd[1], 1);
+	dup2(p_fd[1], STDOUT_FILENO);//1);
+	dup2(fd, STDIN_FILENO);//0);
 	close(p_fd[0]);
-	execute(argv[2], env);
+	execute(argv[2], envp);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **envp)
 	int		p_fd[2];
 	pid_t	pid;
 
-	if (argc != 5)
+	if (argc == 5)
 	{
 		if (pipe(p_fd) == -1)
 			exit(-1);
@@ -57,7 +57,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_putstr_fd("Error: Incorrect arguments", 2);
+		ft_putstr_fd("Error: Incorrect arguments\n", 2);
 	}
 	return (0);
 }

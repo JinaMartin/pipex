@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/18 16:20:28 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/18 16:20:30 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include <stdlib.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	len;
 
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, len + 1);
+	ft_strlcat(str, s2, len + 1);
+	return (str);
+}

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjina <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 09:20:57 by mjina             #+#    #+#             */
-/*   Updated: 2023/06/23 09:20:58 by mjina            ###   ########.fr       */
+/*   Created: 2023/01/25 13:10:26 by mjina             #+#    #+#             */
+/*   Updated: 2023/01/25 13:10:27 by mjina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
-# include "libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <stdlib.h>
+#include "libft.h"
 
-void	free_tab(char **str);
-void	execute(char *str, char **evnp);
-char	*get_path(char *cmd, char **envp);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		i;
+	char	*ptr;
 
-#endif
+	if (!s || !f)
+		return (NULL);
+	i = 0;
+	while (s[i])
+		i++;
+	ptr = (char *)malloc((i + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}	
+	ptr[i] = '\0';
+	return (ptr);
+}
